@@ -1,49 +1,107 @@
-
+import logo from '../assets/logo.png';
+import qr from '../assets/qrcode.webp'
+import googlePlay from '../assets/googleplay.svg'
+import bkash from '../assets/bkash.svg'
+import { FaFacebook, FaWhatsapp, FaYoutube,FaHandsHelping  } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div>
-      <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
-        <aside>
-          <svg
-            width="50"
-            height="50"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            fillRule="evenodd"
-            clipRule="evenodd"
-            className="fill-current"
-          >
-            <path d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"></path>
-          </svg>
-          <p>
-            ACME Industries Ltd.
-            <br />
-            Providing reliable tech since 1992
+    <footer className="mt-16 bg-base-200 ">
+      <div className="footer container mx-auto sm:footer-horizontal text-base-content pt-12">
+        <aside className="p-4  rounded-lg">
+          <img
+            src={logo}
+            alt="TutorSheba Logo"
+            className="w-[200px] h-[65px] mb-4"
+          />
+          <p className="text-[#66789c]">
+            TutorSheba.com is a platform where parents, students, and tutors can
+            easily connect with each other. We provide qualified Home/Online
+            tutors to help your child with studies and helping them perform
+            better in exams. We are a group of 2,50,000+ Tutors and 30,000+
+            satisfied parents/students in Dhaka, Chattagram, Rajshahi, Sylhet,
+            Khulna, Barishal, Rangpur, and Mymensingh cities for different
+            academic and professional subjects.
           </p>
+          <div className="flex gap-4 mt-4">
+            {/* Facebook Icon */}
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 text-2xl hover:text-blue-800"
+            >
+              <FaFacebook />
+            </a>
+
+            {/* WhatsApp Icon */}
+            <a
+              href="https://wa.me/yourwhatsappphonenumber"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-600 text-2xl hover:text-green-800"
+            >
+              <FaWhatsapp />
+            </a>
+
+            {/* YouTube Icon */}
+            <a
+              href="https://www.youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-red-600 text-2xl hover:text-red-800"
+            >
+              <FaYoutube />
+            </a>
+          </div>
         </aside>
         <nav>
-          <h6 className="footer-title">Services</h6>
-          <a className="link link-hover">Branding</a>
-          <a className="link link-hover">Design</a>
-          <a className="link link-hover">Marketing</a>
-          <a className="link link-hover">Advertisement</a>
-        </nav>
-        <nav>
-          <h6 className="footer-title">Company</h6>
+          <h6 className="text-black font-bold">Resources</h6>
           <a className="link link-hover">About us</a>
+          <a className="link link-hover">Our Team</a>
+          <a className="link link-hover">Products</a>
           <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Jobs</a>
-          <a className="link link-hover">Press kit</a>
+          <h5 className="flex items-center gap-1 text-[#800080]">
+            {" "}
+            <FaHandsHelping /> <p> Sheba Uddokta</p>
+          </h5>
         </nav>
         <nav>
-          <h6 className="footer-title">Legal</h6>
-          <a className="link link-hover">Terms of use</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Cookie policy</a>
+          <h6 className="font-bold">More</h6>
+          <a className="link link-hover">Privacy</a>
+          <a className="link link-hover">Help</a>
+          <a className="link link-hover">Terms</a>
+          <a className="link link-hover">FAQ</a>
+          <a className="link link-hover">Pay Now</a>
+          <img src={bkash} className="w-[95px] h-[45px]" alt="" />
         </nav>
-      </footer>
-    </div>
+        <nav className="">
+          <h6 className="font-bold">Download Our Mobile App</h6>
+          <img src={qr} className="w-[120px] h-[120px]" alt="" />
+          <p className="w-[214px]">
+            Our Android App is available right now. Scan the QR Code or Click
+            the Button to Download
+          </p>
+          <img src={googlePlay} className="w-[157px] h-[54px]" alt="" />
+        </nav>
+      </div>
+      <div className=" container mx-auto items-center p-4">
+        <hr className="text-gray-400" />
+        <div className="flex justify-between items-center py-4">
+          <aside className="">
+            <p>
+              Copyright © {new Date().getFullYear()} - Tutor Sheba all right
+              reserved
+            </p>
+          </aside>
+          <nav className="flex items-center gap-4 font-bold cursor-pointer ">
+            <a className="hover:text-blue-500">Privacy</a>
+            <a className="hover:text-blue-500">Policy</a>
+            <a className="hover:text-blue-500">Security</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
   );
 }
 
