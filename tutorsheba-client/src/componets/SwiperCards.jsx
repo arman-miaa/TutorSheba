@@ -17,7 +17,7 @@ const SwiperCards = () => {
   ];
 
   return (
-    <div>
+    <div className="w-4/6 py-12">
       <Swiper
         slidesPerView={3} // Show 3 cards at once
         spaceBetween={10} // Space between the cards
@@ -47,9 +47,9 @@ const SwiperCards = () => {
       >
         {data.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="p-4 bg-purple-500 text-white rounded-lg shadow-lg text-center">
-              <h4>{item.name}</h4>
-              <p>{item.num} Tutors</p>
+            <div className="p-1 bg-purple-500 text-white rounded-lg shadow-lg text-center">
+              <span>{item.name}</span>
+              <span>{item.num} Tutors</span>
             </div>
           </SwiperSlide>
         ))}

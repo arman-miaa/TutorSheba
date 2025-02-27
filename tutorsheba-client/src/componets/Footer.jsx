@@ -73,16 +73,16 @@ const Footer = () => {
           <a className="link link-hover">Terms</a>
           <a className="link link-hover">FAQ</a>
           <a className="link link-hover">Pay Now</a>
-          <img src={bkash} className="w-[95px] h-[45px]" alt="" />
+          <img src={bkash} className="w-[95px] h-[45px] cursor-pointer" alt="" />
         </nav>
         <nav className="">
           <h6 className="font-bold">Download Our Mobile App</h6>
-          <img src={qr} className="w-[120px] h-[120px]" alt="" />
+          <img src={qr} className="w-[120px] h-[120px] cursor-pointer" alt="" />
           <p className="w-[214px]">
             Our Android App is available right now. Scan the QR Code or Click
             the Button to Download
           </p>
-          <img src={googlePlay} className="w-[157px] h-[54px]" alt="" />
+          <img src={googlePlay} className="w-[157px] h-[54px] cursor-pointer" alt="" />
         </nav>
       </div>
       <div className=" container mx-auto items-center p-4">
