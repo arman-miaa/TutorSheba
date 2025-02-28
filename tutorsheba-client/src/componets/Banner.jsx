@@ -3,7 +3,7 @@ import SearchBtn from "./SearchBtn";
 
 import banner1 from "../assets/banner1.svg";
 
-import SwiperCards from "./SwiperCards";
+import SwiperCards from "../swipers/SwiperCards";
 
 const Banner = () => {
  
