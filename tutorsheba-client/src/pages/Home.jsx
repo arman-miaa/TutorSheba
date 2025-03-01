@@ -1,4 +1,5 @@
 import Banner from "../componets/Banner"
+import Featured from "../componets/featured"
 import Feedbacks from "../componets/Feedbacks"
 import PopularTutors from "../componets/PopularTutors"
 import Services from "../componets/Services"
@@ -23,7 +24,8 @@ const Home = () => {
       <Feedbacks />
       <Services />
       <TutorProcess />
-      <StudentProcess/>
+      <StudentProcess />
+      <Featured/>
     </div>
   )
 }
