@@ -334,46 +334,36 @@ const Register = () => {
                   required
                 />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password *"
-                  className="w-full p-2 border rounded"
-                  value={studentForm.password}
-                  onChange={handleStudentFormChange}
-                  required
-                />
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Re-Password *"
-                  className="w-full p-2 border rounded"
-                  value={studentForm.confirmPassword}
-                  onChange={handleStudentFormChange}
-                  required
-                />
-              </div>
+              <input
+                type="password"
+                name="password"
+                placeholder="Password *"
+                className="w-full p-2 border rounded"
+                value={studentForm.password}
+                onChange={handleStudentFormChange}
+                required
+              />
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Re-enter Password *"
+                className="w-full p-2 border rounded"
+                value={studentForm.confirmPassword}
+                onChange={handleStudentFormChange}
+                required
+              />
             </div>
           )}
 
-          {/* Common Submit Button */}
+          {/* Submit Button */}
           <button
             type="submit"
-            className="mt-4 w-full bg-pink-600 text-white font-bold py-2 rounded hover:bg-pink-700 disabled:bg-pink-400"
+            className="w-full p-3 bg-pink-500 text-white rounded mt-6"
             disabled={loading}
           >
-            {loading ? "Processing..." : "Submit & Register"}
+            {loading ? "Submitting..." : "Register"}
           </button>
         </form>
-
-        {/* Already Registered Message */}
-        <p className="text-center mt-3 text-gray-600">
-          Already have an account?{" "}
-          <a href="/login" className="text-pink-600 underline">
-            Sign in
-          </a>
-        </p>
       </div>
     </div>
   );
