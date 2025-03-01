@@ -3,6 +3,7 @@ import Feedbacks from "../componets/Feedbacks"
 import PopularTutors from "../componets/PopularTutors"
 import Services from "../componets/Services"
 import SpecialistSection from "../componets/SpecialistSection"
+import StudentProcess from "../componets/StudentProcess"
 import TuitionTypes from "../componets/TuitionTypes"
 import TutoringSection from "../componets/TutoringSection"
 import TutorProcess from "../componets/TutorProcess"
@@ -21,7 +22,8 @@ const Home = () => {
       <WantToBeCome />
       <Feedbacks />
       <Services />
-      <TutorProcess/>
+      <TutorProcess />
+      <StudentProcess/>
     </div>
   )
 }
