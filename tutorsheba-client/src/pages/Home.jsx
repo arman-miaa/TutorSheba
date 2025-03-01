@@ -1,9 +1,11 @@
 import Banner from "../componets/Banner"
 import Feedbacks from "../componets/Feedbacks"
 import PopularTutors from "../componets/PopularTutors"
+import Services from "../componets/Services"
 import SpecialistSection from "../componets/SpecialistSection"
 import TuitionTypes from "../componets/TuitionTypes"
 import TutoringSection from "../componets/TutoringSection"
+import TutorProcess from "../componets/TutorProcess"
 import WantToBeCome from "../componets/WantToBeCome"
 
 
@@ -17,7 +19,9 @@ const Home = () => {
       <SpecialistSection />
       <TuitionTypes />
       <WantToBeCome />
-      <Feedbacks/>
+      <Feedbacks />
+      <Services />
+      <TutorProcess/>
     </div>
   )
 }
