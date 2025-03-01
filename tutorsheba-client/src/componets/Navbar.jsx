@@ -60,14 +60,14 @@ const Navbar = () => {
           {/* Register & Login (Desktop) */}
           <div className="hidden lg:flex gap-3 text-white font-bold">
             <Link
-              href="/register"
+              to="/register"
               className="flex items-center border-2 py-[6px] px-3 cursor-pointer transition-transform duration-200 hover:-translate-y-1"
             >
               <FaArrowRightFromBracket className="mr-1 text-lg" />
               Register
             </Link>
             <Link
-              href="/login"
+              to="/login"
               className="flex items-center border-2 py-[6px] px-3 cursor-pointer transition-transform duration-200 hover:-translate-y-1"
             >
               <MdLogin className="mr-1 text-xl" />
@@ -91,21 +91,21 @@ const Navbar = () => {
             </ul>
             <div className="flex flex-col gap-2 py-4  items-center justify-center">
              
-                <Link
-                  href="/register"
+                <NavLink to="/register"
                   className="flex items-center justify-center border-2 py-[6px] px-3 text-white font-bold cursor-pointer transition-transform duration-200 hover:-translate-y-1"
                 >
                   <FaArrowRightFromBracket className="mr-1 text-lg" />
                   Register
-                </Link>
+                </NavLink>
              
               <Link
-                href="/login"
+                to="/login"
                 className="flex items-center justify-center border-2 py-[6px] px-3 text-white font-bold cursor-pointer transition-transform duration-200 hover:-translate-y-1"
               >
                 <MdLogin className="mr-1 text-xl" />
                 Login
               </Link>
+              
             </div>
           </div>
         )}

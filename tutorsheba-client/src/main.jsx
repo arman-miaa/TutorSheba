@@ -6,6 +6,7 @@ import MainLayout from './Layouts/MainLayout'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import ErrorPage from './pages/ErrorPage'
+import Register from './pages/Register'
 
 
 createRoot(document.getElementById("root")).render(
@@ -16,8 +17,9 @@ createRoot(document.getElementById("root")).render(
           <Route path="*" element={<ErrorPage />} />
       
         <Route path="/" element={<MainLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="login" element={<Login />} />
+          <Route index element={<Home />} />
+          <Route path='/register' element={<Register/>} />
+          <Route path="/login" element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>
