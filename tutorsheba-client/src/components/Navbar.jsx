@@ -22,35 +22,47 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
-  const links = (
-    <>
-      <li>
-        <NavLink to="/tuttion_jobs" className="hover:underline">
-          TUITION JOBS
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/premium_tutors" className="hover:underline">
-          PREMIUM TUTORS
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/tutor_request" className="hover:underline">
-          TUTOR REQUEST
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/courses" className="hover:underline">
-          COURSES
-        </NavLink>
-      </li>
-    </>
-  );
+const linkClasses = ({ isActive }) =>
+  `text-lg font-medium hover:underline hover:decoration-blue-500 hover:decoration-2 hover:underline-offset-8 
+  ${
+    isActive
+      ? "underline decoration-blue-500 decoration-2 underline-offset-4"
+      : ""
+  }`;
+
+const links = (
+  <>
+    <li>
+      <NavLink to="/tuttion_jobs" className={linkClasses}>
+        TUITION JOBS
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink to="/premium_tutors" className={linkClasses}>
+        PREMIUM TUTORS
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink to="/tutor_request" className={linkClasses}>
+        TUTOR REQUEST
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink to="/courses" className={linkClasses}>
+        COURSES
+      </NavLink>
+    </li>
+  </>
+);
+
 
   return (
-    <div className="sticky top-0 right-0 z-50 w-full bg-gradient-to-r from-[#7d0c70] via-[#a31480] to-[#c21890] transition-all duration-300">
+    <div className=" w-full">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center py-3">
+        <div className="flex justify-between items-center ">
           {/* Logo */}
           <div>
             <Link to="/">
@@ -60,7 +72,9 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex gap-8 text-white font-bold">
-            <ul className="flex items-center gap-8">{links}</ul>
+            <ul className="flex items-center gap-8 text-lg font-medium">
+              {links}
+            </ul>
           </div>
 
           {/* Register & Login (Desktop) */}
