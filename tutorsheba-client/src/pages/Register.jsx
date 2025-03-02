@@ -6,6 +6,7 @@ import teacher from "../assets/teacher.webp";
 import student from "../assets/student.webp";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { useUserContext } from "../context/UserContext";
 
 const districtThanaData = {
   Dhaka: ["Dhanmondi", "Mirpur", "Gulshan", "Uttara", "Mohammadpur"],
@@ -19,7 +20,8 @@ const Register = () => {
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [availableThanas, setAvailableThanas] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+    const [error, setError] = useState("");
+    const { handleUserRegistration } = useUserContext();
 
   // Form data states
   const [tutorForm, setTutorForm] = useState({
@@ -103,7 +105,8 @@ const Register = () => {
           tutorData,
           { withCredentials: true }
         );
-        console.log("Tutor registered successfully:", response.data);
+          console.log("Tutor registered successfully:", response.data);
+          handleUserRegistration();
         navigate("/"); // Redirect to login page after successful registration
       } else {
         // Validate passwords match
@@ -126,7 +129,8 @@ const Register = () => {
           studentData,
           { withCredentials: true }
         );
-        console.log("Student registered successfully:", response.data);
+          console.log("Student registered successfully:", response.data);
+          handleUserRegistration();
         navigate("/"); // Redirect to login page after successful registration
       }
     } catch (error) {
