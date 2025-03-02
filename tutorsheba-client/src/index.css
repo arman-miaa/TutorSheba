@@ -6,3 +6,23 @@
 }
 
 
+.banner {
+    background-image: url('./assets/bg-banner.png');
+    background-repeat: no-repeat;
+    background-position: top right;
+    /* background-size: cover;  */
+}
+
+@keyframes bounce-up-down {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px); /* Moves the image up */
+  }
+}
+
+.animate-bounce-up-down {
+  animation: bounce-up-down 2s infinite ease-in-out; /* Loop the animation */
+}
+

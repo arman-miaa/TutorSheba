@@ -3,6 +3,7 @@ import SearchBtn from "./SearchBtn";
 
 import banner1 from "../assets/banner1.svg";
 
+
 import SwiperCards from "../swipers/SwiperCards";
 
 const Banner = () => {
@@ -11,11 +12,11 @@ const Banner = () => {
 
   return (
     <div
-      className="bg-gray-100"
+      className="  bg-gray-100 banner pb-8"
       style={{ clipPath: "polygon(0 1%, 100% 0, 100% 85%, 0% 100%)" }}
     >
       <div className="container mx-auto">
-        <div className="flex justify-between items-center bg-gray-100">
+        <div className="flex justify-between items-center ">
           <div className="flex-1">
             <h1 className="font-bold text-3xl lg:text-5xl text-[#800080]">
               Best <span className="text-blue-500">Tutoring Platform</span> for
@@ -29,10 +30,10 @@ const Banner = () => {
               <SearchBtn />
             </div>
           </div>
-          <div className="flex-1 w-full h-full  ">
+          <div className="flex-1 w-full h-full mt-8">
             <img
               src={banner1}
-              className="w-[420px] h-[420px]  ml-auto"
+              className="w-[420px] h-[420px] ml-auto animate-bounce-up-down"
               alt="banner"
             />
           </div>
