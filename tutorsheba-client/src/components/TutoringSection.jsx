@@ -1,6 +1,8 @@
 import TitleSection from "./TitleSection"
 import tutoring from '../assets/tutoring.svg'
 import { FaArrowRight, FaSearchengin } from "react-icons/fa6";
+import { IoSearch } from "react-icons/io5";
+import { Link } from "react-router";
 
 const TutoringSection = () => {
   return (
@@ -10,9 +12,9 @@ const TutoringSection = () => {
         subtitle={`Find Your Tution Jobs, in your area`}
       />
       {/* img and text */}
-      <div className="flex justify-between items-center gap-4">
-        <div className="flex-1">
-          <img src={tutoring} alt="" />
+      <div className="flex justify-between items-center gap-4 ">
+        <div className="flex-1 animate-bounce-up-down">
+          <img src={tutoring} className="" alt="" />
         </div>
         <div className="flex-1 text-justify">
           <h3 className="font-bold text-xl">
@@ -45,9 +47,13 @@ const TutoringSection = () => {
               <span className="absolute inset-0  bg-purple-700"></span>
 
               {/* Text Content */}
-              <span className="relative flex items-center gap-2 z-50">
-                <FaSearchengin /> SEARCH TUITION <FaArrowRight />
-              </span>
+              <Link to="/tuttion_jobs">
+                {" "}
+                <span className="relative flex items-center gap-2 z-50 cursor-pointer">
+                  <IoSearch className="text-xl" /> SEARCH TUITION{" "}
+                  <FaArrowRight />
+                </span>
+              </Link>
             </button>
           </div>
         </div>
