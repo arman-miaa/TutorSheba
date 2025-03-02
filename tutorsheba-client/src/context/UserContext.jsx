@@ -45,11 +45,12 @@ export const UserProvider = ({ children }) => {
 
         console.log("Fetched User Data:", response.data); // Debugging
 
-        if (response.data?.email) {
-          setUserData(response.data);
-        } else {
-          setLoading(false);
-        }
+      if (response.data?.email || response.data?.name) {
+        setUserData(response.data);
+      } else {
+        setLoading(false);
+      }
+
       } catch (error) {
         console.error("Error fetching user data:", error);
         setLoading(false);

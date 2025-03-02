@@ -123,7 +123,8 @@ const Register = () => {
 
         const response = await axios.post(
           "http://localhost:5000/students",
-          studentData
+          studentData,
+          { withCredentials: true }
         );
         console.log("Student registered successfully:", response.data);
         navigate("/"); // Redirect to login page after successful registration
