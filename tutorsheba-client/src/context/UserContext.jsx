@@ -20,6 +20,7 @@ export const UserProvider = ({ children }) => {
     setLoading(false);
   };
 
+  console.log(setUser, setUserData);
   // Function to log out user
   const logOut = async () => {
     try {
@@ -42,6 +43,8 @@ export const UserProvider = ({ children }) => {
           withCredentials: true,
         });
 
+        console.log("Fetched User Data:", response.data); // Debugging
+
         if (response.data?.email) {
           setUserData(response.data);
         } else {
@@ -55,6 +58,8 @@ export const UserProvider = ({ children }) => {
 
     fetchUserData();
   }, []);
+
+  console.log("User Context:", user); // Debugging
 
   return (
     <UserContext.Provider value={{ user, setUserData, logOut, loading }}>

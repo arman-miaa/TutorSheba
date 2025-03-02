@@ -83,7 +83,7 @@ async function run() {
       try {
         // Fetch the user from the database using the email from the token
         const user = await usersCollection.findOne({ email: req.user.email });
-
+console.log(user,'user');
         // If user is found, send the user data in the response
         if (user) {
           res.send(user);
@@ -134,11 +134,12 @@ async function run() {
         const token = generateToken({ email });
 
         // Set the token as an HTTP-only cookie
-     res.cookie("token", token, {
-       httpOnly: true,
-       secure: process.env.NODE_ENV === "production", // Only secure in production
-       sameSite: "none",
-     });
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production", // ❌ Secure only in production
+    sameSite: "lax", // ✅ Better compatibility
+  });
+
 
 
         res
