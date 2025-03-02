@@ -13,7 +13,7 @@ export const useUserContext = () => {
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
+console.log(user,'user');
   // Function to set user data
   const setUserData = (userData) => {
     setUser(userData);
@@ -41,7 +41,7 @@ export const UserProvider = ({ children }) => {
         withCredentials: true,
       });
 
-      console.log("Fetched User Data:", response.data); // Debugging
+    //   console.log("Fetched User Data:", response.data); 
 
       if (response.data?.email || response.data?.name) {
         setUserData(response.data);

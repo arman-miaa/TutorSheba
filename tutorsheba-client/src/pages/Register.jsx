@@ -1,4 +1,4 @@
-"use client";
+
 
 import { useState } from "react";
 import registerImg from "../assets/registerImg.svg";
@@ -20,8 +20,8 @@ const Register = () => {
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [availableThanas, setAvailableThanas] = useState([]);
   const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-    const { handleUserRegistration } = useUserContext();
+  const [error, setError] = useState("");
+  const { handleUserRegistration } = useUserContext();
 
   // Form data states
   const [tutorForm, setTutorForm] = useState({
@@ -105,8 +105,8 @@ const Register = () => {
           tutorData,
           { withCredentials: true }
         );
-          console.log("Tutor registered successfully:", response.data);
-          handleUserRegistration();
+        console.log("Tutor registered successfully:", response.data);
+        handleUserRegistration();
         navigate("/"); // Redirect to login page after successful registration
       } else {
         // Validate passwords match
@@ -129,8 +129,8 @@ const Register = () => {
           studentData,
           { withCredentials: true }
         );
-          console.log("Student registered successfully:", response.data);
-          handleUserRegistration();
+        console.log("Student registered successfully:", response.data);
+        handleUserRegistration();
         navigate("/"); // Redirect to login page after successful registration
       }
     } catch (error) {

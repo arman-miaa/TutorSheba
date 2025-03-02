@@ -1,19 +1,25 @@
-
-
-import { useState } from "react";
-import logo from '../assets/logo.png'
+import React, { useState } from "react";
+import logo from "../assets/logo.png";
 import { MdLogin } from "react-icons/md";
-import { FaArrowRightFromBracket } from "react-icons/fa6";
+import { FaSignOutAlt, FaArrowDown, FaBell } from "react-icons/fa"; // Update this import
 import { IoMenu, IoClose } from "react-icons/io5";
-
-import { Link, NavLink } from "react-router";
+import { Link, NavLink } from "react-router"; // Update import for NavLink
+import { useUserContext } from "../context/UserContext";
+import { FaPersonRifle, FaUser } from "react-icons/fa6";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for the user dropdown on mobile
+  const { user, logOut } = useUserContext();
+  console.log(user);
 
-  // Toggle menu
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    logOut();
+    setIsMenuOpen(false);
   };
 
   const links = (
@@ -58,22 +64,47 @@ const Navbar = () => {
           </div>
 
           {/* Register & Login (Desktop) */}
-          <div className="hidden lg:flex gap-3 text-white font-bold">
-            <Link
-              to="/register"
-              className="flex items-center border-2 py-[6px] px-3 cursor-pointer transition-transform duration-200 hover:-translate-y-1"
-            >
-              <FaArrowRightFromBracket className="mr-1 text-lg" />
-              Register
-            </Link>
-            <Link
-              to="/login"
-              className="flex items-center border-2 py-[6px] px-3 cursor-pointer transition-transform duration-200 hover:-translate-y-1"
-            >
-              <MdLogin className="mr-1 text-xl" />
-              Login
-            </Link>
-          </div>
+          {user ? (
+            <div className=" items-center hidden lg:flex gap-2 text-white relative">
+              <span>{user.name}</span>
+              <FaArrowDown
+                className="cursor-pointer"
+                onClick={() => setIsMenuOpen(!isMenuOpen)} // Toggle the user menu
+              />
+              <FaBell className="text-lg cursor-pointer ml-2" />
+
+              {/* Dropdown for Profile/Logout */}
+              {isMenuOpen && (
+                <div className="absolute  top-10 right-0 bg-gray-800 text-white p-3 rounded-lg shadow-lg">
+                  <div className="cursor-pointer flex items-center gap-2">
+                    <FaUser />
+                    <Link>Profile</Link>
+                  </div>
+                  <div className="cursor-pointer flex items-center gap-2">
+                    <MdLogin />
+                    <button onClick={handleLogout}>Logout</button>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="hidden lg:flex gap-3 text-white font-bold">
+              <Link
+                to="/register"
+                className="flex items-center border-2 py-[6px] px-3 cursor-pointer transition-transform duration-200 hover:-translate-y-1"
+              >
+                <FaSignOutAlt className="mr-1 text-lg" />
+                Register
+              </Link>
+              <Link
+                to="/login"
+                className="flex items-center border-2 py-[6px] px-3 cursor-pointer transition-transform duration-200 hover:-translate-y-1"
+              >
+                <MdLogin className="mr-1 text-xl" />
+                Login
+              </Link>
+            </div>
+          )}
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden">
@@ -89,23 +120,50 @@ const Navbar = () => {
             <ul className="flex flex-col items-center gap-4 py-4 text-white font-bold">
               {links}
             </ul>
-            <div className="flex flex-col gap-2 py-4  items-center justify-center">
-             
-                <NavLink to="/register"
-                  className="flex items-center justify-center border-2 py-[6px] px-3 text-white font-bold cursor-pointer transition-transform duration-200 hover:-translate-y-1"
-                >
-                  <FaArrowRightFromBracket className="mr-1 text-lg" />
-                  Register
-                </NavLink>
-             
-              <Link
-                to="/login"
-                className="flex items-center justify-center border-2 py-[6px] px-3 text-white font-bold cursor-pointer transition-transform duration-200 hover:-translate-y-1"
-              >
-                <MdLogin className="mr-1 text-xl" />
-                Login
-              </Link>
-              
+
+            <div className="flex flex-col gap-2 py-4 items-center justify-center">
+              {user ? (
+                <div className="flex items-center gap-2 relative">
+                  <span>{user.name}</span>
+                  <FaArrowDown
+                    className="cursor-pointer"
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  />
+                  <FaBell className="text-lg cursor-pointer ml-2" />
+
+                  {/* Dropdown for Profile/Logout */}
+                  {isMenuOpen && (
+                    <div className=" mt-8 left-0 bg-gray-600 text-white p-3 rounded-lg shadow-lg w-40">
+                      <div className="cursor-pointer flex items-center gap-2">
+                        <FaUser />
+                        <Link>Profile</Link>
+                      </div>
+                      <div className="cursor-pointer flex items-center gap-2">
+                        <MdLogin />
+                        <button onClick={handleLogout}>Logout</button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <>
+                  <NavLink
+                    to="/register"
+                    className="flex items-center justify-center border-2 py-[6px] px-3 text-white font-bold cursor-pointer transition-transform duration-200 hover:-translate-y-1"
+                  >
+                    <FaSignOutAlt className="mr-1 text-lg" />
+                    Register
+                  </NavLink>
+
+                  <Link
+                    to="/login"
+                    className="flex items-center justify-center border-2 py-[6px] px-3 text-white font-bold cursor-pointer transition-transform duration-200 hover:-translate-y-1"
+                  >
+                    <MdLogin className="mr-1 text-xl" />
+                    Login
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         )}

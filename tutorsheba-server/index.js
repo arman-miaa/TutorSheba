@@ -63,48 +63,82 @@ async function run() {
     }
 
     // User Login API
-    app.post("/login", async (req, res) => {
-      const { email, password } = req.body;
-      const user = await usersCollection.findOne({ email });
-      if (!user || user.password !== password) {
-        return res.status(401).send({ message: "Invalid Credentials" });
-      }
-      const token = generateToken({ email: user.email });
-      res.cookie("token", token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "none",
-      });
-      res.send({ message: "Login Successful", token });
-    });
+    // User Login API
 
-    // Assuming 'verifyToken' middleware is already defined
-app.get("/profile", verifyToken, async (req, res) => {
-  try {
-    const { email, phone } = req.user; // Assuming 'req.user' contains 'email' or 'phone'
 
-    let user;
-    if (email) {
-      // If the user is a tutor (has an email), search by email
-      user = await usersCollection.findOne({ email });
-    } else if (phone) {
-      // If the user is a student (has a phone), search by phone number
-      user = await usersCollection.findOne({ phone });
-    }
+app.post("/login", async (req, res) => {
+  const { identifier, password } = req.body;
 
-    // If user is found, send the user data in the response
-    if (user) {
-      res.send(user);
-    } else {
-      // If no user found, return a 404 error
-      res.status(404).send({ message: "User not found" });
-    }
-  } catch (error) {
-    console.error("Error fetching user data:", error);
-    res.status(500).send({ message: "Error fetching user data", error });
+  console.log("🔹 Received login request:", identifier, password);
+
+  const user = await usersCollection.findOne({
+    $or: [{ email: identifier }, { phone: identifier }],
+  });
+
+  console.log("🔹 Found User:", user);
+
+  if (!user) {
+    console.log("❌ User not found!");
+    return res.status(401).send({ message: "Invalid Credentials" });
   }
+
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  console.log("🔹 Password Valid:", isPasswordValid);
+
+  if (!isPasswordValid) {
+    console.log("❌ Invalid Password!");
+    return res.status(401).send({ message: "Invalid Credentials" });
+  }
+
+  const token = generateToken({ email: user.email, role: user.role });
+
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+  });
+
+  console.log("✅ Login Successful!");
+
+  res.send({
+    message: "Login Successful",
+    user: {
+      email: user.email,
+      number:  user.phone,
+      name: user.name,
+      role: user.role,
+    },
+  });
 });
 
+
+
+    // Assuming 'verifyToken' middleware is already defined
+    app.get("/profile", verifyToken, async (req, res) => {
+      try {
+        const { email, phone } = req.user; // Assuming 'req.user' contains 'email' or 'phone'
+
+        let user;
+        if (email) {
+          // If the user is a tutor (has an email), search by email
+          user = await usersCollection.findOne({ email });
+        } else if (phone) {
+          // If the user is a student (has a phone), search by phone number
+          user = await usersCollection.findOne({ phone });
+        }
+
+        // If user is found, send the user data in the response
+        if (user) {
+          res.send(user);
+        } else {
+          // If no user found, return a 404 error
+          res.status(404).send({ message: "User not found" });
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        res.status(500).send({ message: "Error fetching user data", error });
+      }
+    });
 
     // Logout API
     app.post("/logout", (req, res) => {
@@ -143,13 +177,11 @@ app.get("/profile", verifyToken, async (req, res) => {
         const token = generateToken({ email });
 
         // Set the token as an HTTP-only cookie
-  res.cookie("token", token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production", // ❌ Secure only in production
-    sameSite: "lax", // ✅ Better compatibility
-  });
-
-
+        res.cookie("token", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production", // ❌ Secure only in production
+          sameSite: "lax", // ✅ Better compatibility
+        });
 
         res
           .status(200)
@@ -160,50 +192,51 @@ app.get("/profile", verifyToken, async (req, res) => {
       }
     });
 
-app.post("/students", async (req, res) => {
-  console.log("Received Student Data:", req.body); // Debugging
+    app.post("/students", async (req, res) => {
+      console.log("Received Student Data:", req.body); // Debugging
 
-  try {
-    const { name, phone, password, role } = req.body;
+      try {
+        const { name, phone, password, role } = req.body;
 
-    if (!phone || !name || !password || !role) {
-      return res.status(400).send({ message: "All fields are required!" });
-    }
+        if (!phone || !name || !password || !role) {
+          return res.status(400).send({ message: "All fields are required!" });
+        }
 
-    // Check if the user already exists
-    const existingUser = await usersCollection.findOne({ phone });
-    if (existingUser) {
-      return res.status(400).send({ message: "User already exists!" });
-    }
+        // Check if the user already exists
+        const existingUser = await usersCollection.findOne({ phone });
+        if (existingUser) {
+          return res.status(400).send({ message: "User already exists!" });
+        }
 
-    // Hash the password before storing
-    const hashedPassword = await bcrypt.hash(password, 10);
+        // Hash the password before storing
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Add the student to the 'students' collection
-    const student = { name, phone, password: hashedPassword, role };
-    await studentCollection.insertOne(student);
+        // Add the student to the 'students' collection
+        const student = { name, phone, password: hashedPassword, role };
+        await studentCollection.insertOne(student);
 
-    // Add the student to the 'users' collection as well
-    const user = { phone, password: hashedPassword, name, role };
-    await usersCollection.insertOne(user);
+        // Add the student to the 'users' collection as well
+        const user = { phone, password: hashedPassword, name, role };
+        await usersCollection.insertOne(user);
 
-    // Generate token
-    const token = generateToken({ phone });
+        // Generate token
+        const token = generateToken({ phone });
 
-    // Set the token as an HTTP-only cookie
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
+        // Set the token as an HTTP-only cookie
+        res.cookie("token", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "lax",
+        });
+
+        res
+          .status(200)
+          .send({ message: "Student registered successfully", token });
+      } catch (error) {
+        console.error("Error registering student:", error);
+        res.status(500).send({ message: "Error registering student", error });
+      }
     });
-
-    res.status(200).send({ message: "Student registered successfully", token });
-  } catch (error) {
-    console.error("Error registering student:", error);
-    res.status(500).send({ message: "Error registering student", error });
-  }
-});
-
   } finally {
     // await client.close(); // Uncomment this in production
   }
