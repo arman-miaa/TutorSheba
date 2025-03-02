@@ -4,10 +4,10 @@ import bg2 from "../assets/bg2.jpg"; // Import the background image
 
 const SpecialistSection = () => {
       const data = [
-        { name: "Bhairav", num: "3" },
-        { name: "John", num: "5" },
-        { name: "Sarah", num: "2" },
-        { name: "Alex", num: "8" },
+        { name: "Bhairav", num: "3",id:1 },
+        { name: "John", num: "5",id:2 },
+        { name: "Sarah", num: "2",id:3 },
+        { name: "Alex", num: "8",id:4 },
        
       ];
   return (
@@ -33,7 +33,7 @@ const SpecialistSection = () => {
         <div className="border-2 flex items-center z-10 h-full text-white text-2xl font-bold">
           <div className="flex  items-center justify-between  container mx-auto ">
             {data.map((item) => (
-              <div>
+              <div key={item.id}>
                 <h3>{item.name}</h3>
                 <h4>{item.num}</h4>
               </div>

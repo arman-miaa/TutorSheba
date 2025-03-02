@@ -15,7 +15,7 @@ const TuitionTypes = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div className="card bg-base-200  shadow-xl">
           <figure className="px-10 pt-10">
-            <img src={TuitionTypesImg1} alt="Shoes" class="rounded-xl" />
+            <img src={TuitionTypesImg1} alt="Shoes" className="rounded-xl" />
           </figure>
           <div className="card-body items-center text-center">
             <h2 className="card-title">Home Tutoring</h2>
@@ -28,7 +28,7 @@ const TuitionTypes = () => {
         </div>
         <div className="card bg-base-200  shadow-xl">
           <figure className="px-10 pt-10">
-            <img src={TuitionTypesImg2} alt="Shoes" class="rounded-xl" />
+            <img src={TuitionTypesImg2} alt="Shoes" className="rounded-xl" />
           </figure>
           <div className="card-body items-center text-center">
             <h2 className="card-title">Online Tutoring</h2>
@@ -42,7 +42,7 @@ const TuitionTypes = () => {
         </div>
         <div className="card bg-base-200  shadow-xl">
           <figure className="px-10 pt-10">
-            <img src={TuitionTypesImg3} alt="Shoes" class="rounded-xl" />
+            <img src={TuitionTypesImg3} alt="Shoes" className="rounded-xl" />
           </figure>
           <div className="card-body items-center text-center">
             <h2 className="card-title">Group Tutoring</h2>

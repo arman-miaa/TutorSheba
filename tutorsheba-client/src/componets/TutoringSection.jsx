@@ -36,12 +36,12 @@ const TutoringSection = () => {
       overflow-hidden"
             >
               {/* Background Overlay */}
-              <spa
+              <span
                 style={{
                   clipPath: "polygon(0 1%, 100% 3%, 29% 100%, 0% 100%)",
                 }}
                 className="absolute inset-0 w-1/2 bg-pink-700 z-30"
-              ></spa>
+              ></span>
               <span className="absolute inset-0  bg-purple-700"></span>
 
               {/* Text Content */}
