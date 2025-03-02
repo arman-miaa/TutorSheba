@@ -1,20 +1,19 @@
-import Banner from "../componets/Banner"
-import Featured from "../componets/featured"
-import Feedbacks from "../componets/Feedbacks"
-import PopularTutors from "../componets/PopularTutors"
-import Services from "../componets/Services"
-import SpecialistSection from "../componets/SpecialistSection"
-import StudentProcess from "../componets/StudentProcess"
-import TuitionTypes from "../componets/TuitionTypes"
-import TutoringSection from "../componets/TutoringSection"
-import TutorProcess from "../componets/TutorProcess"
-import WantToBeCome from "../componets/WantToBeCome"
+import Banner from "../components/Banner";
+import Featured from "../components/Featured";
 
-
+import Feedbacks from "../components/Feedbacks";
+import PopularTutors from "../components/PopularTutors";
+import Services from "../components/Services";
+import SpecialistSection from "../components/SpecialistSection";
+import StudentProcess from "../components/StudentProcess";
+import TuitionTypes from "../components/TuitionTypes";
+import TutoringSection from "../components/TutoringSection";
+import TutorProcess from "../components/TutorProcess";
+import WantToBeCome from "../components/WantToBeCome";
 
 const Home = () => {
   return (
-      <div>
+    <div>
       <Banner />
       <TutoringSection />
       <PopularTutors />
@@ -25,9 +24,9 @@ const Home = () => {
       <Services />
       <TutorProcess />
       <StudentProcess />
-      <Featured/>
+      <Featured />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

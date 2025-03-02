@@ -27,36 +27,39 @@ const Login = () => {
     });
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
-  setError("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
 
-  try {
-    const response = await axios.post("http://localhost:5000/login", formData, {
-      withCredentials: true,
-    });
+    try {
+      const response = await axios.post(
+        "https://tutorsheba.onrender.com/login",
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
 
-    console.log("🔹 Server Response:", response.data);
+      console.log("🔹 Server Response:", response.data);
 
-    if (response.data?.user) {
-      const userData = response.data.user; // Extract user data from response
-      setUserData(userData); // Update the context with user data
+      if (response.data?.user) {
+        const userData = response.data.user; // Extract user data from response
+        setUserData(userData); // Update the context with user data
 
-      // navigate(role === "tutor" ? "/tutor-dashboard" : "/student-dashboard");
-      navigate("/")
-    } else {
-      console.log("❌ No user data received");
+        // navigate(role === "tutor" ? "/tutor-dashboard" : "/student-dashboard");
+        navigate("/");
+      } else {
+        console.log("❌ No user data received");
+        setError("Failed to log in. Please try again.");
+      }
+    } catch (error) {
+      console.error("❌ Login error:", error.response?.data || error.message);
       setError("Failed to log in. Please try again.");
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error("❌ Login error:", error.response?.data || error.message);
-    setError("Failed to log in. Please try again.");
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
 
   return (
     <div className="container mx-auto flex flex-col md:flex-row items-center justify-between p-4">

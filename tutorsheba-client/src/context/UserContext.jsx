@@ -13,7 +13,7 @@ export const useUserContext = () => {
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-console.log(user,'user');
+  console.log(user, "user");
   // Function to set user data
   const setUserData = (userData) => {
     setUser(userData);
@@ -24,7 +24,7 @@ console.log(user,'user');
   const logOut = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/logout",
+        "https://tutorsheba.onrender.com/logout",
         {},
         { withCredentials: true }
       );
@@ -37,11 +37,14 @@ console.log(user,'user');
   // Fetch user data when the page loads
   const fetchUserData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/profile", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        "https://tutorsheba.onrender.com/profile",
+        {
+          withCredentials: true,
+        }
+      );
 
-    //   console.log("Fetched User Data:", response.data); 
+      //   console.log("Fetched User Data:", response.data);
 
       if (response.data?.email || response.data?.name) {
         setUserData(response.data);
