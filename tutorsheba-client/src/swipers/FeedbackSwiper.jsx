@@ -18,7 +18,6 @@ const FeedbackSwiper = ({ feedbacks }) => {
           delay: 3000, // Adjust delay for better speed
           disableOnInteraction: false,
         }}
-     
         modules={[Autoplay]}
         className="mySwiper"
       >
@@ -29,9 +28,22 @@ const FeedbackSwiper = ({ feedbacks }) => {
             className="p-6 bg-white rounded-lg shadow-md"
           >
             <div className="text-center">
+              <div className="border-2 relative w-[214px] h-[214px]  rounded-bl-lg overflow-hidden">
+                <img
+                  src={feedback.image}
+                  alt=""
+                  className="absolute border2 "
+                />
+              </div>
+
               <h3 className="text-lg font-semibold">{feedback.name}</h3>
+              <p className="text-gray-600 mt-2">
+                {feedback.subject
+                  ? feedback.subject
+                  : `${feedback.relation} to Grade 4 student`}
+              </p>
+
               <p className="text-gray-600 mt-2">{feedback.feedback}</p>
-              <p className="text-yellow-500 mt-2">⭐ {feedback.rating} / 5</p>
             </div>
           </SwiperSlide>
         ))}

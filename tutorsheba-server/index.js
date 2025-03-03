@@ -6,20 +6,18 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
 
-
 const app = express();
 const port = process.env.PORT || 5000;
 
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:5173", // ✅ Update this to match frontend URL
+    origin: ["http://localhost:5173", "https://tutor-sheba-beta.vercel.app"],
     credentials: true, // ✅ Required for cookies
   })
 );
 app.use(cookieParser()); // ✅ Ensure cookie-parser is used
 app.use(express.json());
-
 
 // MongoDB Connection
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.7argw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
@@ -41,9 +39,15 @@ async function run() {
     const tutorCollection = client.db("tutorDB").collection("tutors");
     const studentCollection = client.db("tutorDB").collection("students");
     const usersCollection = client.db("tutorDB").collection("users");
-    const premiumTutorsCollection = client.db("tutorDB").collection("premiumTutors");
-    const parentsReviewsCollection = client.db("tutorDB").collection("parentsReviews");
-    const tutorsReviewsCollection = client.db("tutorDB").collection("tutorsReviews");
+    const premiumTutorsCollection = client
+      .db("tutorDB")
+      .collection("premiumTutors");
+    const parentsReviewsCollection = client
+      .db("tutorDB")
+      .collection("parentsReviews");
+    const tutorsReviewsCollection = client
+      .db("tutorDB")
+      .collection("tutorsReviews");
 
     // JWT Token Generation
     function generateToken(user) {
@@ -67,7 +71,6 @@ async function run() {
 
     // User Login API
     // User Login API
-
 
     app.post("/login", async (req, res) => {
       const { identifier, password } = req.body;
@@ -113,8 +116,6 @@ async function run() {
         },
       });
     });
-
-
 
     // Assuming 'verifyToken' middleware is already defined
     app.get("/profile", verifyToken, async (req, res) => {
@@ -241,9 +242,7 @@ async function run() {
       }
     });
 
-
     app.get("/premiumTutors", async (req, res) => {
-      
       const result = await premiumTutorsCollection.find().toArray();
       res.send(result);
     });
@@ -253,7 +252,6 @@ async function run() {
       const result = await premiumTutorsCollection.insertOne(tutor);
       res.send(result);
     });
-    
 
     app.get("/parentsReviews", async (req, res) => {
       const result = await parentsReviewsCollection.find().toArray();
@@ -263,8 +261,6 @@ async function run() {
       const result = await tutorsReviewsCollection.find().toArray();
       res.send(result);
     });
-
-
   } finally {
     // await client.close(); // Uncomment this in production
   }
