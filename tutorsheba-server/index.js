@@ -42,6 +42,8 @@ async function run() {
     const studentCollection = client.db("tutorDB").collection("students");
     const usersCollection = client.db("tutorDB").collection("users");
     const premiumTutorsCollection = client.db("tutorDB").collection("premiumTutors");
+    const parentsReviewsCollection = client.db("tutorDB").collection("parentsReviews");
+    const tutorsReviewsCollection = client.db("tutorDB").collection("tutorsReviews");
 
     // JWT Token Generation
     function generateToken(user) {
@@ -252,6 +254,15 @@ async function run() {
       res.send(result);
     });
     
+
+    app.get("/parentsReviews", async (req, res) => {
+      const result = await parentsReviewsCollection.find().toArray();
+      res.send(result);
+    });
+    app.get("/tutorsReviews", async (req, res) => {
+      const result = await tutorsReviewsCollection.find().toArray();
+      res.send(result);
+    });
 
 
   } finally {
