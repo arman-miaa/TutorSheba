@@ -23,7 +23,7 @@ const SpecialistSection = () => {
 
       {/* Background Section with Overlay */}
       <div
-        className="relative h-60 bg-cover bg-center flex items-center"
+        className="relative py-8 mt-12 bg-cover bg-center flex items-center"
         style={{ backgroundImage: `url(${bg2})` }}
       >
         {/* Overlay */}
