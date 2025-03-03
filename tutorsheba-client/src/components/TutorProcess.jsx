@@ -3,55 +3,65 @@ import TitleSection from "./TitleSection";
 
 const steps = [
   {
-    text: "Let’s Work Together & Explore Opportunities",
+    title: "Create Tutor Profile",
+    text: "Create your profile in minutes with sign up information.",
     icon: <FaUser />,
   },
   {
-    text: "Find the Perfect Tutoring Opportunity",
+    title: "Create Tutor Profile",
+    text: "Create your profile in minutes with sign up information.",
     icon: <FaUser />,
   },
   {
-    text: "Start Teaching & Share Knowledge",
+    title: "Create Tutor Profile",
+    text: "Create your profile in minutes with sign up information.",
     icon: <FaUser />,
   },
   {
-    text: "Get Paid Securely & Grow Your Career",
+    title: "Create Tutor Profile",
+    text: "Create your profile in minutes with sign up information.",
     icon: <FaUser />,
   },
+
 ];
 
 const TutorProcess = () => {
   return (
-    <div className="container mx-auto">
-      <TitleSection
-        title="How it Works?"
-        subtitle="Here's how it works for Tutors"
-      />
+    <div className="bg-gray-100 p-8 pb-16">
+      <div className="container mx-auto">
+        <TitleSection
+          title="How it Works?"
+          // subtitle="Here's how it works for Tutors"
+        />
+        <p className="text-2xl text-[#66789c] mb-8 -mt-8 font-bold text-center">
+          Here's how it works for <span className="text-[#800080]">Tutors</span>
+        </p>
 
-      <div className="flex flex-col gap-6 items-center">
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            className={`flex items-center gap-6 ${
-              index % 2 === 1 ? "flex-row-reverse" : "" // Flip every 2nd row
-            }`}
-          >
-            {/* Step Content */}
-            <div className="flex items-center gap-4 bg-base-300 p-4 rounded-lg shadow-md">
-              <div>
-                <p>{step.text}</p>
+        <div className="flex flex-col gap-6 items-center">
+          {steps.map((step, index) => (
+            <div
+              key={index}
+              className={`flex items-center gap-6 ${
+                index % 2 === 1 ? "flex-row-reverse" : "" // Flip every 2nd row
+              }`}
+            >
+              {/* Step Content */}
+              <div className="flex items-center gap-4 bg-base-100 p-4 rounded-lg shadow-md">
+                <div>
+                  <p>{step.text}</p>
+                </div>
+                <div className="p-4 bg-purple-600 text-white rounded-full">
+                  {step.icon}
+                </div>
               </div>
-              <div className="p-4 bg-purple-600 text-white rounded-full">
-                {step.icon}
+
+              {/* Step Number */}
+              <div className="bg-[#d36cc7]  p-8 px-10 text-xl rounded-full text-white font-bold ">
+                {index + 1}
               </div>
             </div>
-
-            {/* Step Number */}
-            <div className="bg-blue-300 p-6 rounded-full text-white font-bold text-lg">
-              {index + 1}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

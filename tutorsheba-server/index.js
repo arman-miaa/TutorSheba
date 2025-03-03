@@ -39,6 +39,7 @@ async function run() {
     const tutorCollection = client.db("tutorDB").collection("tutors");
     const studentCollection = client.db("tutorDB").collection("students");
     const usersCollection = client.db("tutorDB").collection("users");
+    const jobsCollection = client.db("tutorDB").collection("jobs");
     const premiumTutorsCollection = client
       .db("tutorDB")
       .collection("premiumTutors");
@@ -268,6 +269,22 @@ async function run() {
       const result = await serviceCollection.find().toArray();
       res.send(result);
     });
+
+
+    app.get("/jobs", async (req, res) => {
+      const result = await jobsCollection.find().toArray();
+      res.send(result);
+    });
+
+        app.get("/jobs/:id", async (req, res) => {
+          const jobId = req.params.id;
+          const query = { _id: new ObjectId(jobId) };
+          const result = await jobsCollection.findOne(query);
+          res.send(result);
+        });
+
+
+
   } finally {
     // await client.close(); // Uncomment this in production
   }
