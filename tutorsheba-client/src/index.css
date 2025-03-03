@@ -26,3 +26,27 @@
   animation: bounce-up-down 2s infinite ease-in-out; /* Loop the animation */
 }
 
+
+.button{
+    position: relative;
+    overflow: hidden;
+    transition: all  0.7s ease-in-out;
+}
+
+.button::after{
+    content: " ";
+    width: 100%;
+    height: 80%;
+    background-color: rgba(255,255,255,0.3);
+    position: absolute;
+    left: -160px;
+    top: 0;
+    transform: rotate(300deg) translateX(-10%);
+    transition:all  0.7s ease-in-out;
+
+}
+
+.button:hover::after{
+    transition:  0.7s ease-in-out;
+    left: 48%;
+}

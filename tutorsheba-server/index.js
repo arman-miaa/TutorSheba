@@ -41,6 +41,7 @@ async function run() {
     const tutorCollection = client.db("tutorDB").collection("tutors");
     const studentCollection = client.db("tutorDB").collection("students");
     const usersCollection = client.db("tutorDB").collection("users");
+    const premiumTutorsCollection = client.db("tutorDB").collection("premiumTutors");
 
     // JWT Token Generation
     function generateToken(user) {
@@ -66,50 +67,50 @@ async function run() {
     // User Login API
 
 
-app.post("/login", async (req, res) => {
-  const { identifier, password } = req.body;
+    app.post("/login", async (req, res) => {
+      const { identifier, password } = req.body;
 
-  console.log("🔹 Received login request:", identifier, password);
+      console.log("🔹 Received login request:", identifier, password);
 
-  const user = await usersCollection.findOne({
-    $or: [{ email: identifier }, { phone: identifier }],
-  });
+      const user = await usersCollection.findOne({
+        $or: [{ email: identifier }, { phone: identifier }],
+      });
 
-  console.log("🔹 Found User:", user);
+      console.log("🔹 Found User:", user);
 
-  if (!user) {
-    console.log("❌ User not found!");
-    return res.status(401).send({ message: "Invalid Credentials" });
-  }
+      if (!user) {
+        console.log("❌ User not found!");
+        return res.status(401).send({ message: "Invalid Credentials" });
+      }
 
-  const isPasswordValid = await bcrypt.compare(password, user.password);
-  console.log("🔹 Password Valid:", isPasswordValid);
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+      console.log("🔹 Password Valid:", isPasswordValid);
 
-  if (!isPasswordValid) {
-    console.log("❌ Invalid Password!");
-    return res.status(401).send({ message: "Invalid Credentials" });
-  }
+      if (!isPasswordValid) {
+        console.log("❌ Invalid Password!");
+        return res.status(401).send({ message: "Invalid Credentials" });
+      }
 
-  const token = generateToken({ email: user.email, role: user.role });
+      const token = generateToken({ email: user.email, role: user.role });
 
-  res.cookie("token", token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-  });
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+      });
 
-  console.log("✅ Login Successful!");
+      console.log("✅ Login Successful!");
 
-  res.send({
-    message: "Login Successful",
-    user: {
-      email: user.email,
-      number:  user.phone,
-      name: user.name,
-      role: user.role,
-    },
-  });
-});
+      res.send({
+        message: "Login Successful",
+        user: {
+          email: user.email,
+          number: user.phone,
+          name: user.name,
+          role: user.role,
+        },
+      });
+    });
 
 
 
@@ -237,6 +238,22 @@ app.post("/login", async (req, res) => {
         res.status(500).send({ message: "Error registering student", error });
       }
     });
+
+
+    app.get("/premiumTutors", async (req, res) => {
+      
+      const result = await premiumTutorsCollection.find().toArray();
+      res.send(result);
+    });
+
+    app.post("/premiumTutors", async (req, res) => {
+      const tutor = req.body;
+      const result = await premiumTutorsCollection.insertOne(tutor);
+      res.send(result);
+    });
+    
+
+
   } finally {
     // await client.close(); // Uncomment this in production
   }

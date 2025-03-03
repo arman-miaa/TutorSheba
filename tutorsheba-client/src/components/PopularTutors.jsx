@@ -4,7 +4,7 @@ import TitleSection from "./TitleSection"
 
 const PopularTutors = () => {
   return (
-    <div>
+    <div className="bg-base-300">
       <TitleSection
         title={`Our Popular Tutors`}
         subtitle={`Here are few of the Verified Teachers`}
