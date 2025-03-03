@@ -8,21 +8,20 @@ const steps = [
     icon: <FaUser />,
   },
   {
-    title: "Create Tutor Profile",
-    text: "Create your profile in minutes with sign up information.",
+    title: "Apply for Jobs",
+    text: "Completing your profile start browsing our latest TUITION JOBS page and start applying.",
     icon: <FaUser />,
   },
   {
-    title: "Create Tutor Profile",
-    text: "Create your profile in minutes with sign up information.",
+    title: "Get Free Tutoring Job Alert",
+    text: "Get updated tutoring jobs alerts via SMS/CALL whenever new jobs are posted.",
     icon: <FaUser />,
   },
   {
-    title: "Create Tutor Profile",
-    text: "Create your profile in minutes with sign up information.",
+    title: "Start Tutoring and Grow Your Income",
+    text: "LIf parent like the demo session , you can continue tuition and start earning",
     icon: <FaUser />,
   },
-
 ];
 
 const TutorProcess = () => {
