@@ -8,10 +8,12 @@ import Login from './pages/Login'
 import ErrorPage from './pages/ErrorPage'
 import Register from './pages/Register'
 import { UserProvider } from './context/UserContext'
-import TutorJobs from './pages/TutorJobs'
+
 import PremiumTutors from './pages/PremiumTutors'
 import TutorRequest from './pages/TutorRequest'
 import Courese from './pages/Courese'
+import TutionJobs from './pages/TutionJobs'
+import TutorDetails from './pages/TutorDetails'
 
 
 createRoot(document.getElementById("root")).render(
@@ -26,7 +28,8 @@ createRoot(document.getElementById("root")).render(
             <Route index element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/tuttion_jobs" element={<TutorJobs />} />
+            <Route path="/tuttion_jobs" element={<TutionJobs />} />
+            <Route path='/tutor-details/:id' element={<TutorDetails/>} />
             <Route path="/premium_tutors" element={<PremiumTutors />} />
             <Route path="/tutor_request" element={<TutorRequest />} />
             <Route path="/courses" element={<Courese/>} />

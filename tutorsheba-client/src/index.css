@@ -59,3 +59,28 @@
     border-bottom-right-radius: 220px;
     border-top-right-radius: 120px;
 }
+
+
+.textColor {
+  color: #ffffff;
+}
+
+.secondaryTextColor {
+  color: #b40c7b;
+}
+
+/* Basic styling for checkboxes */
+.checkbox-style {
+  width: 20px;
+  height: 20px;
+  border-radius: 30%;
+
+  background-color: white;
+  appearance: none;
+  transition: background-color 0.3s ease;
+}
+
+.checkbox-style:checked {
+  background-color: #5e003f;
+  border-color: #5e003f;
+}
