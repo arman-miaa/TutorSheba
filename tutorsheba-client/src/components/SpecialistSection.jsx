@@ -3,13 +3,13 @@ import TitleSection from "./TitleSection";
 import bg2 from "../assets/bg2.jpg"; // Import the background image
 
 const SpecialistSection = () => {
-      const data = [
-        { name: "Bhairav", num: "3",id:1 },
-        { name: "John", num: "5",id:2 },
-        { name: "Sarah", num: "2",id:3 },
-        { name: "Alex", num: "8",id:4 },
-       
-      ];
+  const stats = [
+    { value: "428,092+", label: "Total Applied" },
+    { value: "119,489+", label: "Total Tutors" },
+    { value: "4,745+", label: "Live Tuition Jobs" },
+    { value: "4.7", label: "Average Tutor Rating" },
+  ];
+
   return (
     <div className="relative">
       {/* Title Section */}
@@ -23,22 +23,20 @@ const SpecialistSection = () => {
 
       {/* Background Section with Overlay */}
       <div
-        className="relative h-60 bg-cover bg-center"
+        className="relative h-60 bg-cover bg-center flex items-center"
         style={{ backgroundImage: `url(${bg2})` }}
       >
         {/* Overlay */}
-        {/* <div className="absolute inset-0  bg-opacity-60"></div> */}
+        <div className="absolute inset-0 "></div>
 
-        {/* Content on top of overlay (if needed) */}
-        <div className="border-2 flex items-center z-10 h-full text-white text-2xl font-bold">
-          <div className="flex  items-center justify-between  container mx-auto ">
-            {data.map((item) => (
-              <div key={item.id}>
-                <h3>{item.name}</h3>
-                <h4>{item.num}</h4>
-              </div>
-            ))}
-          </div>
+        {/* Stats Content */}
+        <div className="relative z-10 container mx-auto text-white text-center grid grid-cols-2 md:grid-cols-4 gap-6">
+          {stats.map((item, index) => (
+            <div key={index} className="p-4   rounded-lg">
+              <h3 className="text-3xl font-bold">{item.value}</h3>
+              <h4 className="text-lg">{item.label}</h4>
+            </div>
+          ))}
         </div>
       </div>
     </div>

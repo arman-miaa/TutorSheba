@@ -7,14 +7,19 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 
 const Specialist = () => {
-  const data = [
-    { name: "Bhairav", num: "3" },
-    { name: "John", num: "5" },
-    { name: "Sarah", num: "2" },
-    { name: "Alex", num: "8" },
-    { name: "Lisa", num: "4" },
-    { name: "Tom", num: "6" },
-  ];
+const data = [
+  { subject: "Bangla" },
+  { subject: "English" },
+  { subject: "Arabic" },
+  { subject: "Mathematics" },
+  { subject: "Science" },
+  { subject: "History" },
+  { subject: "Geography" },
+  { subject: "Physics" },
+  { subject: "Chemistry" },
+  { subject: "Biology" },
+];
+
 
   return (
     <div className="container mx-auto py-12">
@@ -47,9 +52,9 @@ const Specialist = () => {
       >
         {data.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="p-4 bg-gray-500 text-white rounded-lg shadow-lg text-center">
-              <span>{item.name}</span>
-              <span>{item.num} Tutors</span>
+            <div className="p-4 bg-gray-200 border-2 border-gray-300 hover:bg-transparent cursor-pointer rounded-lg shadow-lg text-center">
+              <span className="font-bold text-xl cursor-pointer ">{item.subject}</span>
+            
             </div>
           </SwiperSlide>
         ))}
