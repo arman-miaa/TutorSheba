@@ -3,7 +3,7 @@ import loginImg from "../assets/login.svg";
 import teacher from "../assets/teacher.webp";
 import student from "../assets/student.webp";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useUserContext } from "../context/UserContext";
 
 const Login = () => {
@@ -62,8 +62,8 @@ const Login = () => {
   };
 
   return (
-    <div className="container mx-auto flex flex-col md:flex-row items-center justify-between p-4">
-      <div className="flex-1 mb-6 md:mb-0">
+    <div className="container mx-auto flex flex-col md:flex-row items-center justify-between p-4 h-screen">
+      <div className="flex-1 mb-6 md:mb-0 animate-bounce-up-down">
         <img
           src={loginImg}
           className="w-full max-w-[453px] mx-auto"
@@ -87,6 +87,7 @@ const Login = () => {
               }`}
               alt="Tutor"
             />
+
             <input
               type="radio"
               name="role"
@@ -117,6 +118,7 @@ const Login = () => {
           </label>
         </div>
         <form onSubmit={handleSubmit} className="mt-4 space-y-3">
+          Email or Phone *
           <input
             type="text"
             name="identifier"
@@ -127,6 +129,7 @@ const Login = () => {
             required
           />
           <div className="relative">
+            Password *
             <input
               type={showPassword ? "text" : "password"}
               name="password"
@@ -138,21 +141,43 @@ const Login = () => {
             />
             <button
               type="button"
-              className="absolute right-2 top-2 text-gray-500"
+              className="absolute right-2 top-8 text-gray-500"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? "Hide" : "Show"}
             </button>
           </div>
+          <div className="flex justify-between">
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                id="rememberMe"
+                className="w-6 h-6 accent-[#800080] cursor-pointer"
+              />
+              <label htmlFor="rememberMe" className="text-xl cursor-pointer">
+                Remember Me
+              </label>
+            </div>
+
+            <button className="cursor-pointer hover:text-blue-400">
+              Forgot Password
+            </button>
+          </div>
           <button
             type="submit"
-            className="w-full p-3 bg-pink-500 text-white rounded mt-6"
+            className="w-full p-3 bg-[#800080] text-white rounded mt-2"
             disabled={loading}
           >
             {loading
               ? "Logging in..."
               : `Login as a ${role === "tutor" ? "Tutor" : "Student"}`}
           </button>
+          <Link
+            to="/register"
+            className="text-center flex justify-center w-full  mx-auto"
+          >
+            Click here to Register
+          </Link>
         </form>
       </div>
     </div>

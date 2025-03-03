@@ -1,26 +1,28 @@
-import { FaUser } from "react-icons/fa6";
+import { FaUser, FaUserPlus } from "react-icons/fa6";
 import TitleSection from "./TitleSection";
+import { IoCarOutline, IoFlowerOutline } from "react-icons/io5";
+import { RiCamera2Line } from "react-icons/ri";
 
 const steps = [
   {
     title: "Create Tutor Profile",
     text: "Create your profile in minutes with sign up information.",
-    icon: <FaUser />,
+    icon: <FaUserPlus />,
   },
   {
     title: "Apply for Jobs",
     text: "Completing your profile start browsing our latest TUITION JOBS page and start applying.",
-    icon: <FaUser />,
+    icon: <IoFlowerOutline />,
   },
   {
     title: "Get Free Tutoring Job Alert",
     text: "Get updated tutoring jobs alerts via SMS/CALL whenever new jobs are posted.",
-    icon: <FaUser />,
+    icon: <IoCarOutline />,
   },
   {
     title: "Start Tutoring and Grow Your Income",
     text: "LIf parent like the demo session , you can continue tuition and start earning",
-    icon: <FaUser />,
+    icon: <RiCamera2Line />,
   },
 ];
 
@@ -45,17 +47,20 @@ const TutorProcess = () => {
               }`}
             >
               {/* Step Content */}
-              <div className="flex items-center gap-4 bg-base-100 p-4 rounded-lg shadow-md">
-                <div>
+              <div className="flex shadow-2xl items-center gap-4 bg-base-100 px-4 rounded-lg w-[750px] ">
+                <div className="w-full">
+                  <h3 className="uppercase text-[#800080] text-xl">
+                    {step.title}
+                  </h3>
                   <p>{step.text}</p>
                 </div>
-                <div className="p-4 bg-purple-600 text-white rounded-full">
+                <div className="p-8 text-2xl -mr-4 bg-[#800080] text-white">
                   {step.icon}
                 </div>
               </div>
 
               {/* Step Number */}
-              <div className="bg-[#d36cc7]  p-8 px-10 text-xl rounded-full text-white font-bold ">
+              <div className="bg-[#d36cc7] shadow-2xl  p-8  px-10 text-xl rounded-full text-white font-bold ">
                 {index + 1}
               </div>
             </div>

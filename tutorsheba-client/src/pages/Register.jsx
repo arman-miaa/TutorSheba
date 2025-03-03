@@ -142,7 +142,7 @@ const Register = () => {
   return (
     <div className="container mx-auto flex flex-col md:flex-row items-center justify-between p-4">
       {/* Left Side Image */}
-      <div className="flex-1 mb-6 md:mb-0">
+      <div className="flex-1 mb-6 md:mb-0 animate-bounce-up-down">
         <img
           src={registerImg || "/placeholder.svg"}
           className="w-full max-w-[453px] h-auto mx-auto"
@@ -319,6 +319,7 @@ const Register = () => {
           {role === "student" && (
             <div className="mt-4 space-y-3">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
                 <input
                   type="text"
                   name="name"
@@ -362,7 +363,7 @@ const Register = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full p-3 bg-pink-500 text-white rounded mt-6"
+            className="w-full p-3 bg-[#800080] cursor-pointer text-white rounded mt-6"
             disabled={loading}
           >
             {loading ? "Submitting..." : "Register"}

@@ -13,7 +13,6 @@ const TutionJobs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchDate, setSearchDate] = useState("");
   const [loader,setLoader] = useState(true)
-console.log(jobs);
   useEffect(() => {
     axios
       .get("https://tutorsheba.onrender.com/jobs")
