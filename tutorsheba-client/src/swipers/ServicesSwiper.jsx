@@ -1,59 +1,65 @@
-// Import Swiper React components
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-// Import required modules
 import { Pagination, Autoplay } from "swiper/modules";
 
 const ServicesSwiper = () => {
-  const data = [
-    { name: "Bhairav", num: "3" },
-    { name: "John", num: "5" },
-    { name: "Sarah", num: "2" },
-    { name: "Alex", num: "8" },
-    { name: "Lisa", num: "4" },
-    { name: "Tom", num: "6" },
-  ];
+  const [tutorsReviews, setTutorsReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTutorsReviews = async () => {
+      try {
+        const response = await axios.get(
+          "https://tutorsheba.onrender.com/services"
+        );
+        setTutorsReviews(response.data);
+      } catch (error) {
+        console.error("Error fetching tutors' reviews:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTutorsReviews();
+  }, []);
 
   return (
     <div className="container mx-auto py-12">
-      <Swiper
-        slidesPerView={3} // Show 3 cards at once
-        spaceBetween={10} // Space between the cards
-        // pagination={{
-        //   clickable: true, // Enable clickable pagination
-        // }}
-        autoplay={{
-          delay: 2000, // Auto-slide every 2 seconds
-          disableOnInteraction: false, // Keep sliding even if the user interacts
-        }}
-        breakpoints={{
-          640: {
-            slidesPerView: 2, // On smaller screens, show 2 cards
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 3, // Show 3 cards on medium screens
-            spaceBetween: 30,
-          },
-          1024: {
-            slidesPerView: 4, // Show 3 cards on large screens
-            spaceBetween: 50,
-          },
-        }}
-        modules={[Pagination, Autoplay]} // Add Autoplay module
-        className="mySwiper"
-      >
-        {data.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div className="p-4 bg-gray-500 text-white rounded-lg shadow-lg text-center">
-              <span>{item.name}</span>
-              <span>{item.num} Tutors</span>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {loading ? (
+        <p className="text-center">Loading...</p>
+      ) : (
+        <Swiper
+          slidesPerView={5}
+          spaceBetween={10}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            768: { slidesPerView: 3, spaceBetween: 30 },
+            1024: { slidesPerView: 4, spaceBetween: 50 },
+          }}
+          modules={[Pagination, Autoplay]}
+          className="mySwiper"
+        >
+          {tutorsReviews.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div className="p-4   rounded-lg shadow-lg text-center transform transition-all duration-300 hover:translate-y-[-8px]">
+                <img
+                  src={item.image}
+                  className="w-[250px] h-[250px] object-cover mb-4"
+                  alt=""
+                />
+                <span className="mt-4 font-bold">{item.subject}</span>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </div>
   );
 };
