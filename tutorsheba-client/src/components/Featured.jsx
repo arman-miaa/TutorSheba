@@ -8,54 +8,63 @@ import { Pagination, Autoplay } from "swiper/modules";
 
 const Featured = () => {
   const data = [
-    { name: "Bhairav", num: "3" },
-    { name: "John", num: "5" },
-    { name: "Sarah", num: "2" },
-    { name: "Alex", num: "8" },
-    { name: "Lisa", num: "4" },
-    { name: "Tom", num: "6" },
+    { logo: "/logo1.svg" },
+    { logo: "/logo2.svg" },
+    { logo: "/logo3.svg" },
+    { logo: "/logo4.svg" },
+    { logo: "/logo5.svg" },
+    { logo: "/logo1.svg" },
+    { logo: "/logo2.svg" },
+    { logo: "/logo3.svg" },
+    { logo: "/logo4.svg" },
+    { logo: "/logo5.svg" },
+   
   ];
 
   return (
-    <div className="container mx-auto py-12">
-      <h1>We were featured on:</h1>
+    <div className="bg-gray-100 mt-12">
+      <div className="container mx-auto py-12 ">
+        <h1 className="text-3xl lg:text-4xl font-bold py-8">
+          We were <span className="text-[#800080]">featured</span> on:
+        </h1>
 
-      <Swiper
-        slidesPerView={3} // Show 3 cards at once
-        spaceBetween={10} // Space between the cards
-        // pagination={{
-        //   clickable: true, // Enable clickable pagination
-        // }}
-        autoplay={{
-          delay: 2000, // Auto-slide every 2 seconds
-          disableOnInteraction: false, // Keep sliding even if the user interacts
-        }}
-        breakpoints={{
-          640: {
-            slidesPerView: 2, // On smaller screens, show 2 cards
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 3, // Show 3 cards on medium screens
-            spaceBetween: 30,
-          },
-          1024: {
-            slidesPerView: 4, // Show 3 cards on large screens
-            spaceBetween: 50,
-          },
-        }}
-        modules={[Pagination, Autoplay]} // Add Autoplay module
-        className="mySwiper"
-      >
-        {data.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div className="p-4 bg-gray-500 text-white rounded-lg shadow-lg text-center">
-              <span>{item.name}</span>
-              <span>{item.num} Tutors</span>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <Swiper
+          slidesPerView={3} // Show 3 logos at once
+          spaceBetween={6} // Space between the logos
+          autoplay={{
+            delay: 2000, // Auto-slide every 2 seconds
+            disableOnInteraction: false, // Keep sliding even if the user interacts
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 2, // On smaller screens, show 2 logos
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3, // Show 3 logos on medium screens
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 4, // Show 4 logos on large screens
+              spaceBetween: 50,
+            },
+          }}
+          modules={[Pagination, Autoplay]} // Add Autoplay module
+          className="mySwiper"
+        >
+          {data.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div className="transform transition-all duration-300 hover:translate-y-[-8px]   text-white bg-white rounded-lg shadow-lg text-center">
+                <img
+                  src={item.logo}
+                  alt={`Logo ${index + 1}`}
+                  className="mx-auto mb-2 w-[204px] h-[110px] object-contain"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };
