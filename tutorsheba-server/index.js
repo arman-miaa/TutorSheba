@@ -103,11 +103,13 @@ async function run() {
 
       const token = generateToken({ email: user.email, role: user.role });
 
- res.cookie("token", token, {
-   httpOnly: true,
-   secure: process.env.NODE_ENV === "production", // HTTPS required in production
-   sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Allow cross-origin cookies
- });
+res.cookie("token", token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production", // Required for HTTPS
+  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Allow cross-origin cookies
+  maxAge: 7 * 24 * 60 * 60 * 1000, // ✅ Cookie lasts for 7 days
+});
+
 
       console.log("✅ Login Successful!");
 
