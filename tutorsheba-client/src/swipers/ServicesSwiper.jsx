@@ -12,9 +12,7 @@ const ServicesSwiper = () => {
   useEffect(() => {
     const fetchTutorsReviews = async () => {
       try {
-        const response = await axios.get(
-          "https://tutorsheba.onrender.com/services"
-        );
+        const response = await axios.get("http://localhost:5000/services");
         setTutorsReviews(response.data);
       } catch (error) {
         console.error("Error fetching tutors' reviews:", error);

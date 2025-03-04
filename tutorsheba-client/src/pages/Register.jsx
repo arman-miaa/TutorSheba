@@ -99,7 +99,7 @@ const Register = () => {
         };
 
         const response = await axios.post(
-          "https://tutorsheba.onrender.com/tutors",
+          "http://localhost:5000/tutors",
           tutorData,
           { withCredentials: true }
         );
@@ -123,7 +123,7 @@ const Register = () => {
         };
 
         const response = await axios.post(
-          "https://tutorsheba.onrender.com/students",
+          "http://localhost:5000/students",
           studentData,
           { withCredentials: true }
         );
@@ -319,7 +319,6 @@ const Register = () => {
           {role === "student" && (
             <div className="mt-4 space-y-3">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                
                 <input
                   type="text"
                   name="name"

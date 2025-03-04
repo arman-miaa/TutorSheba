@@ -15,9 +15,7 @@ const PopularSwiper = () => {
   useEffect(() => {
     const fetchTutors = async () => {
       try {
-        const response = await axios.get(
-          "https://tutorsheba.onrender.com/premiumTutors"
-        );
+        const response = await axios.get("http://localhost:5000/premiumTutors");
         setPremiumTutors(response.data);
       } catch (error) {
         console.error("Error fetching tutors:", error);
@@ -28,9 +26,6 @@ const PopularSwiper = () => {
 
     fetchTutors();
   }, []);
-
-
-  
 
   return (
     <div>

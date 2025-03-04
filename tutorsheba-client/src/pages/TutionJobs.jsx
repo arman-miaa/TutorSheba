@@ -12,16 +12,16 @@ const TutionJobs = () => {
   const [jobsPerPage, setJobsPerPage] = useState(5);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchDate, setSearchDate] = useState("");
-  const [loader,setLoader] = useState(true)
+  const [loader, setLoader] = useState(true);
   useEffect(() => {
     axios
-      .get("https://tutorsheba.onrender.com/jobs")
+      .get("http://localhost:5000/jobs")
       .then((data) => {
         setJobs(data.data);
-        setLoader(false)
+        setLoader(false);
       })
       .catch((error) => console.error("Error fetching jobs:", error));
-    setLoader(false)
+    setLoader(false);
   }, []);
 
   const totalPages = Math.ceil(jobs.length / jobsPerPage);
