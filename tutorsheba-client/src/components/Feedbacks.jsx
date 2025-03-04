@@ -11,7 +11,9 @@ const Feedbacks = () => {
   useEffect(() => {
     const fetchTutorsReviews = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/tutorsReviews");
+        const response = await axios.get(
+          "https://tutorsheba.onrender.com/tutorsReviews"
+        );
         setTutorsReviews(response.data);
       } catch (error) {
         console.error("Error fetching tutors' reviews:", error);
@@ -23,7 +25,7 @@ const Feedbacks = () => {
     const fetchParentsReviews = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/parentsReviews"
+          "https://tutorsheba.onrender.com/parentsReviews"
         );
         setParentsReviews(response.data);
       } catch (error) {

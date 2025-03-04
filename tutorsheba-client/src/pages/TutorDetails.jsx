@@ -10,7 +10,7 @@ const TutorDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/jobs/${id}`)
+      .get(`https://tutorsheba.onrender.com/jobs/${id}`)
       .then((res) => setJob(res.data))
       .catch((error) => console.error(error));
   }, [id]);

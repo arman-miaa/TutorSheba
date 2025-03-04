@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
   const logOut = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/logout",
+        "https://tutorsheba.onrender.com/logout",
         {},
         { withCredentials: true }
       );
@@ -37,9 +37,12 @@ export const UserProvider = ({ children }) => {
   // Fetch user data when the page loads
   const fetchUserData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/profile", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        "https://tutorsheba.onrender.com/profile",
+        {
+          withCredentials: true,
+        }
+      );
 
       //   console.log("Fetched User Data:", response.data);
 

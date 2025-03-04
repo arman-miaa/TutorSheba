@@ -99,7 +99,7 @@ const Register = () => {
         };
 
         const response = await axios.post(
-          "http://localhost:5000/tutors",
+          "https://tutorsheba.onrender.com/tutors",
           tutorData,
           { withCredentials: true }
         );
@@ -123,7 +123,7 @@ const Register = () => {
         };
 
         const response = await axios.post(
-          "http://localhost:5000/students",
+          "https://tutorsheba.onrender.com/students",
           studentData,
           { withCredentials: true }
         );

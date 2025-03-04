@@ -15,7 +15,7 @@ const TutionJobs = () => {
   const [loader, setLoader] = useState(true);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/jobs")
+      .get("https://tutorsheba.onrender.com/jobs")
       .then((data) => {
         setJobs(data.data);
         setLoader(false);
